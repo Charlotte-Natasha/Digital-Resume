@@ -7,3 +7,4 @@ class ResumeConfig(AppConfig):
 
     def ready(self):
         import resume.signals
+        
