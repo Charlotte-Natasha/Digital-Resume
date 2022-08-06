@@ -53,6 +53,7 @@ class Testimonial(models.Model):
 
 class Media(models.Model):
     class Meta:
+        verbose_name_plural = 'Media Files'
         ordering = ['name']   
 
     image = models.ImageField(blank=True, null=True, upload_to='media') 
