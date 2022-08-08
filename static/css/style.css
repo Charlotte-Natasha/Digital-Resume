@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Heebo:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,100&display=swap');
 /* font-family: 'Courier Prime', monospace;
 font-family: 'Heebo', sans-serif; */
 :root {
-  --primaryColor: #9C07B6;
-  --primaryDarkColor: #3D0048;
-  --primaryHoverColor: #900AA8;
-  --secondaryColor: #F9B000;
-  --baseColor: #21243D;
-  --baseFont: 'Heebo', sans-serif;
-  --titleFont: 'Courier Prime', monospace;
+  --primaryColor: #A14415;
+  --primaryDarkColor: #C69552;
+  --primaryHoverColor: #D7B17E;
+  --secondaryColor: brown;
+  --baseColor: #672400;
+  --baseFont: 'Montserrat', sans-serif;
+  --titleFont: 'Montserrat', monospace;
   --regular: 400;
   --medium: 500;
   --bold: 700;
