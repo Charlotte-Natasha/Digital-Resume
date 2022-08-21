@@ -22,13 +22,38 @@ def get_context_data(self, **kwargs):
 	context["portfolio"] = portfolio
 	return context
 
-# class ContactView(generic.FormView):
+class ContactView(generic.FormView):
 
-#     template_name = 'resume/contact.html'
-#     form_class = ContactForm
-#     success_url = '/'
+    template_name = 'resume/contact.html'
+    form_class = ContactForm
+    success_url = '/'
 
-#     def form_valid(self, form):
-#         form.save()
-#         messages.success(self.request, 'Thankyou. We will be in touch soon')
-#         return super().form_valid(form)
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Thankyou. We will be in touch soon')
+        return super().form_valid(form)
+
+class PortfolioView(generic.ListView):
+	model = Portfolio
+	template_name = 'resume/portfolio.html'
+	paginate_by = 10
+
+	def get_queryset(self):
+	    return super().get_queryset().filter(is_active=True)
+
+class PortfolioDetailView(generic.DetailView):
+	model = Portfolio
+	template_name = 'resume/portfolio-detail.html'
+
+class BlogView(generic.ListView):
+	model = Blog
+	template_name = 'resume/blog.html'
+	paginate_by = 10
+
+	def get_queryset(self):
+		return super().get_queryset().filter(is_active=True)	
+
+class BlogDetailView(generic.DetailView):
+	model = Blog
+	template_name = 'resume/blog-detail.html'		
+

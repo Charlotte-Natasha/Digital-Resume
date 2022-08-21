@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <div class="logoCol"><a href="index.html"><img src="images/logo.png" alt="..."></a></div>
+                    <div class="logoCol"><a href={% url 'resume:home' %}><img src="" alt="..."></a></div>
                 </div>
                 <div class="col">
                     <div class="d-md-none">
@@ -19,10 +19,10 @@
                     <div class="navCollapseCol">
                         <div class="navCol">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="portfolio.html">Portfolio</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href={% url 'resume:home' %}>Home</a></li>
+                                <li><a href={% url 'resume:portfolio' %}>Portfolio</a></li>
+                                <li><a href={% url 'resume:blog' %}>Blog</a></li>
+                                <li><a href={% url 'resume:contact' %}>Contact</a></li>
                             </ul>
                         </div>
                     </div>
