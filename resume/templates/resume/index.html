@@ -12,7 +12,7 @@
       <div class="row g-4 g-md-3  align-items-center">
         <div class="col-md-auto order-md-last">
           <div class="bannerUserImg">
-            <img src="{{me.profile.avatar.url}}" alt="...">
+            <img src="{{me.profile.avatar.url}}" alt="{{me.first_name|title}} {{me.last_name|title}} avatar">
           </div>
         </div>
         <div class="col-md">
@@ -43,32 +43,27 @@
         <div class="col-md-auto">
           <div class="keySkillCol">
             <h4 class="smTitle pb-3">Key Skills</h4>
+            {% for s in me.profile.skills.all %}
+            {% if s.is_key_skill %}
             <div class="keySkillCard">
               <div class="ksIconCol">
-                <img src="{% static 'images/key-skill-icon-1.svg' %}" alt="...">
+                <img src="{{s.image.url}}" alt="...">
               </div>
-              <span class="ksText">Key Skill 1</span>
+              <span class="ksText">{{s.name}}</span>
             </div>
-            <div class="keySkillCard">
-              <div class="ksIconCol">
-                <img src="{% static 'images/key-skill-icon-2.svg' %}" alt="...">
-              </div>
-              <span class="ksText">Key Skill 2</span>
-            </div>
-            <div class="keySkillCard">
-              <div class="ksIconCol">
-                <img src="{% static 'images/key-skill-icon-3.svg' %}" alt="...">
-              </div>
-              <span class="ksText">Key Skill 3</span>
-            </div>
+            {% endif %}
+            {% endfor %}
           </div>
+          
         </div>
         <div class="col-md">
           <h4 class="smTitle pb-3">Coding Skills</h4>
+          {% for sk in me.profile.skills.all %}
+            {% if sk.is_key_skill %}
           <div class="progressCol">
             <div class="progressCard">
               <div class="progressCol">
-                <span class="progressLbl">Key Skill 1</span>
+                <span class="progressLbl">{{sk.name}}</span>
                 <div class="row g-2 align-items-center">
                   <div class="col">
                     <div class="progress progressStyle">
@@ -77,10 +72,12 @@
                     </div>
                   </div>
                   <div class="col-auto">
-                    <span class="pLbl">95%</span>
+                    <span class="pLbl">{{sk.score}}</span>
                   </div>
                 </div>
               </div>
+              {% endif %}
+            {% endfor %}
               <div class="progressCol">
                 <span class="progressLbl">Key Skill 2</span>
                 <div class="row g-2 align-items-center">
@@ -132,6 +129,7 @@
 </section>
 
 <section>
+
   <div class="sectionSpaceSm lightBg">
     <div class="container">
       <div class="row pb-3">
@@ -145,45 +143,23 @@
       <div class="sliderOuter">
         <div class="swiper certificatesSlider">
           <div class="swiper-wrapper">
+            {% for c in certificates %}
+            
             <div class="swiper-slide">
               <div class="cardStyle1">
                 <h4 class="mdTitle cs1Title">
-                  <a href="javascript:void(0)">The Ultimate HTML5 and CSS Series</a>
+                  <a href="javascript:void(0)">{{ c.title }}</a>
                 </h4>
                 <ul class="cardOptionCol">
-                  <li>Feb 2022</li>
-                  <li>Code With Mosh</li>
+                  <li>{{ c.date }}</li>
+                  <li>{{ c.title }}</li>
                 </ul>
-                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat
-                  duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+                <p>{{ c.description }}.</p>
               </div>
             </div>
-            <div class="swiper-slide">
-              <div class="cardStyle1">
-                <h4 class="mdTitle cs1Title">
-                  <a href="javascript:void(0)">Full-Stack Web Development</a>
-                </h4>
-                <ul class="cardOptionCol">
-                  <li>June 2022</li>
-                  <li>Moringa School</li>
-                </ul>
-                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat
-                  duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="cardStyle1">
-                <h4 class="mdTitle cs1Title">
-                  <a href="javascript:void(0)">IBM Full Stack Cloud Developer</a>
-                </h4>
-                <ul class="cardOptionCol">
-                  <li>08 Oct 2021</li>
-                  <li>Coursera</li>
-                </ul>
-                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat
-                  duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-              </div>
-            </div>
+            
+            {% endfor %}
+
           </div>
         </div>
         <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
@@ -203,7 +179,7 @@
             <h4 class="smText regular">Featured Work</h4>
           </div>
           <div class="col-auto">
-            <a href="javascript:void(0)" class="simpleLink">View all</a>
+            <a href="{% url 'resume:portfolio' %}" class="simpleLink">View all</a>
           </div>
         </div>
         <div class="portfolioCard">
@@ -327,7 +303,7 @@
           <h4 class="smText regular">Recent posts</h4>
         </div>
         <div class="col-auto">
-          <a href="javascript:void(0)" class="simpleLink">View all</a>
+          <a href="{% url 'resume:blog' %}" class="simpleLink">View all</a>
         </div>
       </div>
       <div class="row g-3">
@@ -374,8 +350,8 @@
         <li><a href="javascript:void(0)"><img src="{% static 'images/linkedin.svg' %}" alt="..."></a></li>
       </ul>
       <div class="copyrightCol">
-        <p>Copyright ©2022 All rights reserved. Designed by <a href="https://github.com/Charlotte-Natasha/Digital-Resume"
-            target="_blank">Charlotte</a></p>
+        <p>Copyright ©2022 All rights reserved. Designed by <a
+            href="https://github.com/Charlotte-Natasha/Digital-Resume" target="_blank">Charlotte</a></p>
       </div>
     </div>
   </div>
