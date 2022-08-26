@@ -12,7 +12,7 @@ font-family: 'Heebo', sans-serif; */
   --regular: 400;
   --medium: 500;
   --bold: 700;
-  --black: 900;
+  --purple: 900;
   --lightBg: #fcbb6d;
 }
 html {
@@ -20,7 +20,10 @@ html {
 }
 body {
   font-family: var(--baseFont);
-  background: #ed1c6f;
+  background-image: url("{% static 'images/ppic.jpg' %}"); /* The image used for background*/
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center; /* Center the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
   line-height: normal;
 }
 ul {
@@ -257,12 +260,56 @@ a, .btn {
 }
 /*   /nav toggle */
 
+#theme-options-wrapper{
+	display: flex;
+	justify-content: center;
+}
+
+.theme-dot{
+	height: 30px;
+	width: 30px;
+	background-color: black;
+	border-radius: 50%;
+
+	margin: 5px;
+	border:2px solid var(--themeDotBorder);
+
+	-webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+
+	cursor: pointer;
+}
+
+.theme-dot:hover{
+	border-width: 5px;
+}
+
+#light-mode{
+	background-color: #fff;
+}
+
+#blue-mode{
+	background-color: #192734;
+}
+
+#green-mode{
+	background-color: #78866b;
+}
 
 /* banner section */
 .bannerSection {
 	padding: 180px 0 80px;
 }
 .bannerUserImg {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: relative;
+}
+/* .bannerUserImg {
   margin-left: 30px;
   width: 240px;
   height: 240px;
@@ -286,7 +333,7 @@ a, .btn {
   height: 100%;
   background-color: #EDF7FA;
   border-radius: 50%;
-}
+} */
 .bannerBtnCol {
 	padding-top: 15px;
 }
